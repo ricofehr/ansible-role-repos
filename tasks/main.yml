@@ -1,0 +1,13 @@
+---
+
+- name: Create git directory
+  file:
+    path: "{{ repos_folder }}"
+    state: directory
+    mode: 0755
+
+- name: Deploy repos
+  git:
+    repo: "{{ item }}"
+    dest: {{ repos_folder }}/{{ item | regex_replace('^.*/') }}
+  with_items: "{{ repos_list }}"
