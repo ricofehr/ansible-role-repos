@@ -9,5 +9,5 @@
 - name: Deploy repos
   git:
     repo: "{{ item }}"
-    dest: {{ repos_folder }}/{{ item | regex_replace('^.*/') }}
+    dest: "{{ repos_folder }}/{{ item | regex_replace('^.*/') }}"
   with_items: "{{ repos_list }}"
