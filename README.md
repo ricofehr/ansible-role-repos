@@ -1,2 +1,3 @@
 # ansible-role-repos
-Simple role who deploys some git repos
+
+Simple role which clone git repos

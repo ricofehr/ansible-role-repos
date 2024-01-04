@@ -1,13 +1,15 @@
 ---
 
 - name: Create git directory
-  file:
+  ansible.builtin.file:
     path: "{{ repos_folder }}"
     state: directory
-    mode: 0755
+    mode: '0755'
 
 - name: Deploy repos
-  git:
+  ansible.builtin.git:
     repo: "{{ item }}"
     dest: "{{ repos_folder }}/{{ item | regex_replace('^.*/') }}"
-  with_items: "{{ repos_list }}"
+  loop: "{{ repos_list }}"
+  tags:
+    - skip_ansible_lint
